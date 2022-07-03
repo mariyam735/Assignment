@@ -1,0 +1,149 @@
+#include<iostream>
+#include<string>
+#include<cstring>
+#include<fstream>
+
+using namespace std;
+
+class Bank{
+        private:
+
+                string acctype,acchname;
+                int accnum;
+                int balance;
+
+        public:
+                Bank(std::string name , std::string type , int num,int bal)  //parameterized conetructor
+                {
+
+                        acctype=type;
+                        acchname=name;
+                        accnum = num;
+                        balance = bal;
+                }
+                int getAccnum(){return accnum; }
+                string getAcctype(){ return acctype;}
+                string getAcchname(){ return acchname;}
+                int getBalance(){ return balance;}
+                void setvalues(string name,string type,int num,int bal){
+                        acctype=type;
+                        acchname=name;
+                        accnum=num;
+                        balance=bal;
+               }
+
+        protected:
+                void display(){
+                        cout<<"\n Name : "<<acchname;
+                        cout<<"\n Account Number : "<<accnum;
+                        cout<<"\n Account type : "<<acctype;
+                        cout<<"\n Balance : "<<balance;
+                }
+
+};
+
+
+class Login{
+        private:
+                string user_name,password;
+
+        public:
+                Login(string uname,string pwd)
+                {
+                        user_name=uname;
+                        password=pwd;
+                }
+                string getUname() {return user_name;}
+                string getPassword() {return password;}
+               void setUsername( string uname){ user_name=uname;}
+               void setPassword(string pwd){ password=pwd;}
+
+        protected:
+
+                void log(){
+                        cout<<"\nenter the user name: "<<endl;
+                        cin>>user_name;
+
+                if(user_name=="mariyam"){
+                        cout<<"\nenter the password: "<<endl;
+                        cin>>password;
+                        {
+                                if(password=="CG1234
+"){
+                                        
+                                        cout<<"\nLogged In";
+                                        
+                                }
+                                else{
+                                        cout<<"\nInvalide password ";
+                                        
+                                }
+                        }
+                }
+                else{
+                        cout<<"\nyou entered Invalide username and password"<<endl;
+                }
+        }
+};
+
+class User: public Bank,public Login{
+
+        private:
+ 
+                int cell_num;
+         public:
+
+                User(std::string name,std::string type,int num,int bal,string uname,string pwd,int clnum):Bank(name,type,num,bal),Login(uname,pwd)
+                  { 
+                      cell_num=clnum;
+                }
+
+                int getcellnum(){ return cell_num;}
+                void setcellnum(int clnum){ cell_num=clnum;}
+                void dispuserdet();
+};
+              //  void setvalues(std::string name,std::string type,int num,int bal,string uname,string pwd,int clnum)
+                //    {
+                        
+                  //  }
+                void User::dispuserdet(){
+                       
+                              
+                                        log();
+                                        cout<<"\ncell number "<< endl;
+                                        cin>>cell_num;
+                                        display();
+                                        
+                }
+                
+                
+int main()
+{
+   
+   fstream f1;
+   f1.open("Bank.dat",ios::in|ios::app);
+   if(!f1){
+       cout<<"file not found";
+        }
+   else{
+       string data;
+       while(!f1.eof())
+       {
+           f1>>data;
+           cout<<data;
+       }
+       
+       f1.close();
+   }
+   
+    User U("mariyam","sav",0202,10000,"veeru","CG1234",123456);
+    U.dispuserdet();
+   
+   return 0;
+  
+}
+
+
+
+
+
